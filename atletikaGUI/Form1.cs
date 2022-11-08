@@ -36,13 +36,13 @@ namespace atletikaGUI
             {
                 connection.Open();
                 MySqlCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT DISTINCT nemzetek.Nemzet, versenyekszamok.Versenyszam, versenyekszamok.NemzetKod, versenyekszamok.VersenyzoNev, versenyekszamok.Eredmeny, versenyekszamok.Helyezes FROM nemzetek JOIN versenyekszamok ON nemzetek.NemzetId = versenyekszamok.NemzetKod WHERE versenyekszamok.Helyezes = '1'";
+                command.CommandText = "SELECT DISTINCT nemzetek.Nemzet FROM nemzetek JOIN versenyekszamok ON nemzetek.NemzetId = versenyekszamok.NemzetKod WHERE versenyekszamok.Helyezes LIKE 1 ";
                 using (MySqlDataReader dr = command.ExecuteReader())
                 {
                     while (dr.Read())
                     {
-                        vberedmenyek vberedmenyek = new vberedmenyek(dr.GetString("nemzet"), dr.GetString("versenyzonev"), dr.GetInt32("NemzetKod"), dr.GetString("versenyszam"), dr.GetString("eredmeny"), dr.GetInt32("helyezes"));
-                        listBox1_kiiratas.Items.Add(vberedmenyek);
+                        aranynemzet aranynemzet = new aranynemzet(dr.GetString("nemzet"));
+                        listBox1_kiiratas.Items.Add(aranynemzet);
                     }
 
                 }
@@ -56,9 +56,14 @@ namespace atletikaGUI
 
         private void listBox1_kiiratas_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (listBox1_kiiratas.SelectedIndex < 0)
+            {
+                return;
+            }
+            vberedmenyek kivalasztottorszag = (vberedmenyek)listBox1_kiiratas.SelectedItem;           
         }
     }
+}
     //SELECT DISTINCT nemzetek.Nemzet, versenyekszamok.Versenyszam, versenyekszamok.NemzetKod, versenyekszamok.VersenyzoNev, versenyekszamok.Eredmeny, versenyekszamok.Helyezes FROM nemzetek JOIN versenyekszamok ON nemzetek.NemzetId = versenyekszamok.NemzetKod WHERE versenyekszamok.Helyezes = "1"
 
-}
+

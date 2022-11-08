@@ -38,6 +38,10 @@ namespace atletikaGUI
             this.eredmeny = eredmeny;
             this.helyzes = helyzes;
         }
-       
+        public override string ToString()
+        {
+            return nemzet;
+        }
+
     }
 }
