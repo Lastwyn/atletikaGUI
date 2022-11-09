@@ -142,6 +142,7 @@ namespace atletikaGUI
             this.btn_keres.TabIndex = 9;
             this.btn_keres.Text = "keresés";
             this.btn_keres.UseVisualStyleBackColor = false;
+            this.btn_keres.Click += new System.EventHandler(this.btn_keres_Click);
             // 
             // neve
             // 
@@ -187,6 +188,7 @@ namespace atletikaGUI
             this.listBox1_versenyszam.Name = "listBox1_versenyszam";
             this.listBox1_versenyszam.Size = new System.Drawing.Size(250, 94);
             this.listBox1_versenyszam.TabIndex = 14;
+            this.listBox1_versenyszam.SelectedIndexChanged += new System.EventHandler(this.listBox1_versenyszam_SelectedIndexChanged);
             // 
             // Form1
             // 
